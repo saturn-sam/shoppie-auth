@@ -43,7 +43,7 @@ release-job:
   before_script:
   - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-  - docker build -t $CONTAINER_IMAGE -f ./Dockerfile.prod .
+  - docker build -t $CONTAINER_IMAGE -f ./Dockerfile .
   - docker push $CONTAINER_IMAGE
   after_script:
   - docker rmi $CONTAINER_IMAGE
