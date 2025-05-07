@@ -19,7 +19,7 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 
 COPY entrypoint.sh .
 COPY . .
-
+RUN sed -i 's/\r$//' entrypoint.sh
 RUN chmod +x entrypoint.sh
 
 EXPOSE 8000
