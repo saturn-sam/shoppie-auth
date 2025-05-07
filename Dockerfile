@@ -7,12 +7,13 @@ COPY requirements.txt .
 
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt --index http://10.2.5.147:8080 --trusted-host 10.2.5.147
 # Stage 2: Final stage
-FROM dhub.pubalibankbd.com/python/python:3.11-slim
+# FROM dhub.pubalibankbd.com/python/python:3.11-slim
+FROM dhub.pubalibankbd.com/python/python:3.11-slim-nc
 
 WORKDIR /app
 
-# Install netcat for database connectivity checks
-RUN apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
+# # Install netcat for database connectivity checks
+# RUN apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
